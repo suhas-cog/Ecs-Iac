@@ -1,20 +1,25 @@
 name: Deploy CloudFormation Template
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
 jobs:
-deploy:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout code
-uses: actions/checkout@v2
-- name: Configure AWS credentials
-uses: aws-actions/configure-aws-credentials@vl with:
-aws-access-key-id: $11 secrets. AWS_ACCESS_KEY ID }} aws-secret-access-key: $11 secrets. AWS aws-region: us-west-2
-_SECRET_ACCESS_ KEY 1}
-- name: Deploy CloudFormation stack run: |
-aws cloudformation deploy \
---template-file path/to/your-template.yaml \
---stack-name your-stack-name \
---capabilities CAPABILITY NAMED IAM
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@vl 
+      with:
+        aws-access-key-id: ${{ secrets. AWS_ACCESS_KEY ID }} 
+        aws-secret-access-key: ${{ secrets. AWS_SECRET_ACCESS_ KEY }}
+        aws-region: us-east-1b
+
+    - name: Deploy CloudFormation stack 
+      run: |
+        aws cloudformation deploy \
+        --template-file /cloudformation.json \
+        --stack-name your-stack-name \
+        --capabilities CAPABILITY_NAMED_IAM
