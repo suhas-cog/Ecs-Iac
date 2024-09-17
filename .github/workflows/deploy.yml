@@ -1,5 +1,6 @@
 name: Check current working directory
 on: [push]
+
 jobs:
   checkdir:
     runs-on:
